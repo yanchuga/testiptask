@@ -1,0 +1,29 @@
+.image-form {
+  display: flex;
+  flex-direction: row;
+}
+
+.image-form>div {
+  width: 50%;
+}
+
+.video-form {
+  display: flex;
+  flex-direction: row;
+}
+
+.video-form>div {
+  width: 50%;
+}
+
+video {
+  width: 80%;
+}
+
+.navbar-brand>img {
+  display: block;
+  height: 50px;
+}
+.navbar-brand {
+    padding: 0px;
+ }
