@@ -30,9 +30,9 @@ $rand_group = array_rand($groups);
 <html lang="en">
 
 <head>
-	<link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
-	<link rel="icon" href="/favicon.png" type="image/x-icon">
-	<link rel="apple-touch-icon" href="/favicon.png" type="image/x-icon">
+	<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+	<link rel="icon" href="favicon.png" type="image/x-icon">
+	<link rel="apple-touch-icon" href="favicon.png" type="image/x-icon">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,37 +80,7 @@ $rand_group = array_rand($groups);
 						voluptatum quod.</p>
 				</div>
 				<div>
-					<form>
-						<div class="form-group">
-							<label for="exampleInputFname">Firstname</label>
-							<input type="text" class="form-control" id="fname" placeholder="Enter Firstname">
-							<small class="form-text text-muted">any letter + numbers</small>
-						</div>
-						<div class="form-group">
-							<label for="exampleInputLname">Lastname</label>
-							<input type="text" class="form-control" id="lname" placeholder="Enter Lastname">
-							<small class="form-text text-muted">any letter + numbers</small>
-						</div>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Email address</label>
-							<input type="text" class="form-control" id="email" placeholder="Enter email">
-							<small class="form-text text-muted">We'll never share your email with anyone else.</small>
-						</div>
-						<div class="form-group">
-							<label for="exampleInputPhone">Phone</label>
-							<input type="text" class="form-control" id="phone" placeholder="Enter phone">
-							<small class="form-text text-muted">numbers only</small>
-						</div>
-						<div class="form-group">
-							<label for="exampleInputPassword1">Password</label>
-							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-						</div>
-						<div class="form-group form-check">
-							<input type="checkbox" class="form-check-input" id="exampleCheck1">
-							<label class="form-check-label" for="exampleCheck1">Check me out</label>
-						</div>
-						<button type="submit" class="btn btn-primary">Submit</button>
-					</form>
+					<!-- 111111111111111111111111111111 -->
 				</div>
 			</div>
 		</div>
@@ -132,6 +102,7 @@ $rand_group = array_rand($groups);
 				</div>
 				<div>
 					<form>
+						<div class="success"></div>
 						<div class="form-group">
 							<label for="exampleInputFname">Firstname</label>
 							<input type="text" class="form-control" id="fname" placeholder="Enter Firstname">
@@ -152,16 +123,10 @@ $rand_group = array_rand($groups);
 							<input type="text" class="form-control" id="phone" placeholder="Enter phone">
 							<small class="form-text text-muted">numbers only</small>
 						</div>
-						<div class="form-group">
-							<label for="exampleInputPassword1">Password</label>
-							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-						</div>
-						<div class="form-group form-check">
-							<input type="checkbox" class="form-check-input" id="exampleCheck1">
-							<label class="form-check-label" for="exampleCheck1">Check me out</label>
-						</div>
-						<button type="submit" class="btn btn-primary">Submit</button>
+
+						<button type="submit" class="btn btn-primary submit">Submit</button>
 					</form>
+
 				</div>
 			</div>
 		</div>
@@ -180,5 +145,33 @@ $rand_group = array_rand($groups);
 		</div>
 	</div>
 </body>
+<script>
+$(document).ready(function() {
+
+	$('.submit').on("click", function() {
+
+		var form = $(this).closest('form');
+
+		$.post("src.php", form.serialize(), function(response) {
+			// console.log(response)
+			if (response == 'You are registered') {
+				form.replaceWith(response);
+			}
+		});
+
+		return false;
+
+	});
+});
+// 	var datastring = $("#preview_form").serialize();
+// 	$.ajax({  
+//     type: 'POST',  
+//     url: 'src.php', 
+//     data: { fname: this.title },
+//     success: function(response) {
+//         content.html(response);
+//     }
+// });
+</script>
 
 </html>
