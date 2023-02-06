@@ -1,10 +1,8 @@
 <?php
 require "dst.php";
 
-$fname = isset($_POST['fname']);
-$lname = isset($_POST['lname']);
-$email = isset($_POST['email']);
-$phone = isset($_POST['phone']);
-
-
-// echo 'You are registered';
+$fname =  $_POST['fname'] ?? isset($_POST['fname']);
+$lname = $_POST['lname'] ?? isset($_POST['lname']);
+$email = $_POST['email'] ?? isset($_POST['email']);
+$phone = $_POST['phone'] ?? isset($_POST['phone']);
+send($fname,$lname,$email,$phone);

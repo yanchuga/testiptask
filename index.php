@@ -80,7 +80,31 @@ $rand_group = array_rand($groups);
 						voluptatum quod.</p>
 				</div>
 				<div>
-					<!-- 111111111111111111111111111111 -->
+					<form id="eform">
+						<div class="success"></div>
+						<div class="form-group">
+							<label for="exampleInputFname">Firstname</label>
+							<input type="text" class="form-control" id="fname" placeholder="Enter Firstname">
+							<small class="form-text text-muted">any letter + numbers</small>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputLname">Lastname</label>
+							<input type="text" class="form-control" id="lname" placeholder="Enter Lastname">
+							<small class="form-text text-muted">any letter + numbers</small>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Email address</label>
+							<input type="text" class="form-control" id="email" placeholder="Enter email">
+							<small class="form-text text-muted">We'll never share your email with anyone else.</small>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPhone">Phone</label>
+							<input type="text" class="form-control" id="phone" placeholder="Enter phone">
+							<small class="form-text text-muted">numbers only</small>
+						</div>
+
+						<button type="submit" class="btn btn-primary submit">Submit</button>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -101,7 +125,7 @@ $rand_group = array_rand($groups);
 						voluptatum quod.</p>
 				</div>
 				<div>
-					<form>
+					<form id="eform">
 						<div class="success"></div>
 						<div class="form-group">
 							<label for="exampleInputFname">Firstname</label>
@@ -148,30 +172,35 @@ $rand_group = array_rand($groups);
 <script>
 $(document).ready(function() {
 
-	$('.submit').on("click", function() {
+	$('.submit').on("click", function(e) {
 
-		var form = $(this).closest('form');
+		var form = $(this).closest('#eform');
+		var fname = $(this).closest('#eform').find("#fname").val();
+		var lname = $(this).closest('#eform').find("#lname").val();
+		var email = $(this).closest('#eform').find("#email").val();
+		var phone = $(this).closest('#eform').find("#phone").val();
 
-		$.post("src.php", form.serialize(), function(response) {
-			// console.log(response)
-			if (response == 'You are registered') {
-				form.replaceWith(response);
+		e.preventDefault();
+
+		$.ajax({
+			type: 'POST',
+			url: 'src.php',
+			data: {
+				fname: fname,
+				lname: lname,
+				email: email,
+				phone: phone
+			},
+			success: function(data) {
+				console.log(data)
+				form.replaceWith(data);
+			},
+			error: function(result) {
+				console.log(result);
 			}
 		});
-
-		return false;
-
 	});
 });
-// 	var datastring = $("#preview_form").serialize();
-// 	$.ajax({  
-//     type: 'POST',  
-//     url: 'src.php', 
-//     data: { fname: this.title },
-//     success: function(response) {
-//         content.html(response);
-//     }
-// });
 </script>
 
 </html>
